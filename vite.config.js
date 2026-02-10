@@ -6,9 +6,17 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     target: 'esnext',
-    minify: 'terser'
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        entryFileNames: '[name].[hash].js',
+        chunkFileNames: '[name].[hash].js',
+        assetFileNames: '[name].[hash][extname]'
+      }
+    }
   },
   server: {
     port: 5173
-  }
+  },
+  publicDir: false
 })
