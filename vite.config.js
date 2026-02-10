@@ -5,18 +5,22 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    target: 'esnext',
+    target: 'ES2020',
     minify: 'terser',
+    sourcemap: false,
+    reportCompressedSize: false,
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
-        entryFileNames: '[name].[hash].js',
-        chunkFileNames: '[name].[hash].js',
-        assetFileNames: '[name].[hash][extname]'
+        manualChunks: undefined,
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash][extname]'
       }
     }
   },
   server: {
-    port: 5173
-  },
-  publicDir: false
+    port: 5173,
+    host: '0.0.0.0'
+  }
 })
